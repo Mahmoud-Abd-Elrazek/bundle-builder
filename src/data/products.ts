@@ -1,5 +1,21 @@
 import { Product } from '@/types';
-import { camV4, camPanV3, camFloodlight, camDoorbell, camBatteryPro } from '@/assets/images/cameras'
+import {
+   camV4,
+   camPanV3,
+   camFloodlight,
+   camDoorbell,
+   camBatteryPro,
+   camV4White,
+   camV4Black,
+   camV4Gray,
+   camPanV3White,
+   camPanV3Black,
+   camFloodlightWhite,
+   camFloodlightBlack,
+   camBatterywhite,
+   camBatteryBlack
+} from '@/assets/images/cameras';
+
 export const productsList: Product[] = [
    {
       id: 'wyze-cam-v4',
@@ -10,9 +26,9 @@ export const productsList: Product[] = [
       originalPrice: 35.98,
       badge: 'Save 22%',
       colors: [
-         { name: 'White', hex: '#FFFFFF' },
-         { name: 'Grey', hex: '#E5E7EB' },
-         { name: 'Black', hex: '#111827' }
+         { name: 'White', hex: '#FFFFFF', imageUrl: camV4White },
+         { name: 'Grey', hex: '#E5E7EB', imageUrl: camV4Gray },
+         { name: 'Black', hex: '#111827', imageUrl: camV4Black }
       ]
    },
    {
@@ -24,21 +40,21 @@ export const productsList: Product[] = [
       originalPrice: 39.98,
       badge: 'Save 12%',
       colors: [
-         { name: 'White', hex: '#FFFFFF' },
-         { name: 'Black', hex: '#111827' }
+         { name: 'White', hex: '#FFFFFF', imageUrl: camPanV3White },
+         { name: 'Black', hex: '#111827', imageUrl: camPanV3Black }
       ]
    },
    {
       id: 'wyze-cam-floodlight-v2',
       name: 'Wyze Cam Floodlight v2',
-      description: '2K floodlight camera with a 160° wide-angle view.',
+      description: '2K floodlight camera with a 160° wide-angle view for your garage.',
       image: camFloodlight,
       price: 69.98,
       originalPrice: 89.98,
       badge: 'Save 22%',
       colors: [
-         { name: 'White', hex: '#FFFFFF' },
-         { name: 'Black', hex: '#111827' }
+         { name: 'White', hex: '#FFFFFF', imageUrl: camFloodlightWhite },
+         { name: 'Black', hex: '#111827', imageUrl: camFloodlightBlack }
       ]
    },
    {
@@ -55,8 +71,8 @@ export const productsList: Product[] = [
       image: camBatteryPro,
       price: 89.98,
       colors: [
-         { name: 'White', hex: '#FFFFFF' },
-         { name: 'Black', hex: '#111827' }
+         { name: 'White', hex: '#FFFFFF', imageUrl: camBatterywhite },
+         { name: 'Black', hex: '#111827', imageUrl: camBatteryBlack }
       ]
    }
 ];

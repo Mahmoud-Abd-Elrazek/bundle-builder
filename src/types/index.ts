@@ -1,6 +1,7 @@
 export interface ColorOption {
    name: string;
-   hex: string
+   hex: string;
+   imageUrl: string
 }
 
 export interface Product {
@@ -15,6 +16,6 @@ export interface Product {
 }
 
 export interface CartItem extends Product {
-  quantity: number;
-  selectedColor?: string;
+   quantity: number;
+   selectedColor?: string;
 }
