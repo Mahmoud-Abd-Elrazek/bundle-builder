@@ -1,20 +1,17 @@
-## Vite React TypeScript Tailwind Starter
+# Bundle Builder - Frontend Assessment
 
-A barebones template for bootstrapping simple frontend projects.
-
-Also comes with ESLint and Prettier for auto-formatting on save.
+This repository contains the frontend technical assessment for the Bundle Builder interface. The project is designed with a focus on clean component architecture, a responsive user interface, and maintainable state management.
 
 ### Dependencies
-* Vite 2.7.6
+* Vite 8.0.16
 * React 17.0.2
 * TailwindCSS 3.0.7
 * TypeScript 4.5.4
-* ESLint 8.5.0
 
 ### Getting Started
 
-```bash
-npm install
+To run this project locally, follow these simple steps:
 
-npm run dev
-```
+1. **Install dependencies:**
+   ```bash
+   npm install
