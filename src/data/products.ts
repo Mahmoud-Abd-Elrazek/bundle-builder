@@ -1,4 +1,4 @@
-import { Product } from '@/types';
+import { CatalogItem, ItemCategory } from '@/types';
 import {
    camV4,
    camPanV3,
@@ -16,9 +16,14 @@ import {
    camBatteryBlack
 } from '@/assets/images/cameras';
 
-export const productsList: Product[] = [
+import { motionSensor, hubSensor } from '@/assets/images/sensors';
+import { microSd } from '@/assets/images/accessories';
+
+export const catalogData: CatalogItem[] = [
+   // ============== CAMERAS ==============
    {
       id: 'wyze-cam-v4',
+      category: ItemCategory.CAMERA,
       name: 'Wyze Cam v4',
       description: 'The clearest Wyze Cam ever made.',
       image: camV4,
@@ -33,6 +38,7 @@ export const productsList: Product[] = [
    },
    {
       id: 'wyze-cam-pan-v3',
+      category: ItemCategory.CAMERA,
       name: 'Wyze Cam Pan v3',
       description: '360° pan and 180° tilt security camera.',
       image: camPanV3,
@@ -46,6 +52,7 @@ export const productsList: Product[] = [
    },
    {
       id: 'wyze-cam-floodlight-v2',
+      category: ItemCategory.CAMERA,
       name: 'Wyze Cam Floodlight v2',
       description: '2K floodlight camera with a 160° wide-angle view for your garage.',
       image: camFloodlight,
@@ -59,6 +66,7 @@ export const productsList: Product[] = [
    },
    {
       id: 'wyze-duo-cam-doorbell',
+      category: ItemCategory.CAMERA,
       name: 'Wyze Duo Cam Doorbell',
       description: 'Two cameras. Two views. Double the porch protection.',
       image: camDoorbell,
@@ -66,6 +74,7 @@ export const productsList: Product[] = [
    },
    {
       id: 'wyze-battery-cam-pro',
+      category: ItemCategory.CAMERA,
       name: 'Wyze Battery Cam Pro',
       description: 'Protect anywhere. See everything in 2.5K HDR.',
       image: camBatteryPro,
@@ -74,5 +83,48 @@ export const productsList: Product[] = [
          { name: 'White', hex: '#FFFFFF', imageUrl: camBatterywhite },
          { name: 'Black', hex: '#111827', imageUrl: camBatteryBlack }
       ]
+   },
+
+   // ============== SENSORS ==============
+   {
+      id: 'wyze-sense-motion-sensor',
+      category: ItemCategory.SENSOR,
+      name: 'Wyze Sense Motion Sensor',
+      description: 'Detects motion inside your home.',
+      image: motionSensor,
+      price: 59.98
+   },
+   {
+      id: 'wyze-sense-hub',
+      category: ItemCategory.SENSOR,
+      name: 'Wyze Sense Hub (Required)',
+      description: 'The central brain of your security system.',
+      image: hubSensor,
+      price: 0,
+      originalPrice: 29.98,
+      isRequired: true
+   },
+
+   // ============== ACCESSORIES ==============
+   {
+      id: 'wyze-microsd-256gb',
+      category: ItemCategory.ACCESSORY,
+      name: 'Wyze MicroSD Card (256GB)',
+      description: 'Local storage for continuous recording.',
+      image: microSd,
+      price: 41.96
+   },
+
+   // ============== PLANS ==============
+   {
+      id: 'cam-unlimited',
+      category: ItemCategory.PLAN,
+      name: 'Cam Unlimited',
+      description: 'Unlimited active cameras with cloud recording.',
+      image: 'https://cdn-icons-png.flaticon.com/512/1161/1161388.png', // temp image for the time being
+      price: 9.99,
+      originalPrice: 12.99,
+      billingCycle: 'mo'
    }
+
 ];
