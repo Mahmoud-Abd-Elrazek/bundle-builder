@@ -92,7 +92,12 @@ export const catalogData: CatalogItem[] = [
       name: 'Wyze Sense Motion Sensor',
       description: 'Detects motion inside your home.',
       image: motionSensor,
-      price: 59.98
+      price: 59.98,
+      colors: [
+         { name: 'White', hex: '#FFFFFF', imageUrl: '' },
+         { name: 'Grey', hex: '#E5E7EB', imageUrl: '' },
+         { name: 'Black', hex: '#111827', imageUrl: '' }
+      ]
    },
    {
       id: 'wyze-sense-hub',
@@ -112,7 +117,11 @@ export const catalogData: CatalogItem[] = [
       name: 'Wyze MicroSD Card (256GB)',
       description: 'Local storage for continuous recording.',
       image: microSd,
-      price: 41.96
+      price: 41.96,
+      colors: [
+         { name: 'White', hex: '#FFFFFF', imageUrl: '' },
+         { name: 'Black', hex: '#111827', imageUrl: '' }
+      ]
    },
 
    // ============== PLANS ==============

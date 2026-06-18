@@ -29,11 +29,13 @@ export interface CameraItem extends BaseItem {
 export interface SensorItem extends BaseItem {
    category: ItemCategory.SENSOR;
    isRequired?: boolean;
+   colors?: ColorOption[];
 }
 
 export interface AccessoryItem extends BaseItem {
    badge?: string | undefined;
    category: ItemCategory.ACCESSORY;
+   colors?: ColorOption[];
 }
 
 export interface PlanItem extends BaseItem {

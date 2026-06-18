@@ -2,16 +2,24 @@ import React, { useState } from 'react';
 import { PlanItem } from '@/types';
 import { CardShell } from './CardShell';
 import { Badge } from '../ui/Badge';
+import { useCartStore } from '@/store/useCartStore';
 
 interface PlanCardProps {
   plan: PlanItem;
 }
 
 export const PlanCard = ({ plan }: PlanCardProps) => {
-  const [isSelected, setIsSelected] = useState(false);
+  const cart = useCartStore((state) => state.cart);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+
+  const isSelected = cart.some((item) => item.productId === plan.id);
 
   const togglePlan = () => {
-    setIsSelected(!isSelected);
+    if (isSelected) {
+      updateQuantity(plan.id, 0);
+    } else {
+      updateQuantity(plan.id, 1);
+    }
   };
 
   return (
@@ -21,7 +29,7 @@ export const PlanCard = ({ plan }: PlanCardProps) => {
       className="flex flex-col sm:flex-row items-center gap-[19px] sm:p-[16px]"
     >
       {plan.badge && <Badge text={plan.badge} className="absolute top-4 left-4" />}
-      
+
       <div className="w-16 h-16 flex justify-center items-center flex-shrink-0">
         <img src={plan.image} alt={plan.name} loading="lazy" className="w-full h-full object-contain" />
       </div>

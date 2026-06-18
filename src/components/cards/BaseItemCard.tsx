@@ -37,7 +37,7 @@ export const BaseItemCard = ({
       {badge && <Badge text={badge} className="absolute top-4 left-4" />}
 
       {/* ===== IMAGE =====*/}
-      <div className="w-full h-full sm:w-1/3 flex justify-center items-center flex-shrink-0">
+      <div className="w-full sm:w-1/3 flex justify-center items-center flex-shrink-0">
         <img src={image} alt={name} loading="lazy" className="w-32 h-32 object-contain" />
       </div>
 

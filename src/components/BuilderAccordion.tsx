@@ -1,23 +1,40 @@
 import React, { useState } from 'react';
 import { Camera, Shield, Radio, Layers } from 'lucide-react';
-
-// استيراد الداتا والأنواع والكروت (زي ما عملناها في الخطوات اللي فاتت)
-import { catalogData } from '@/data/mockDb';
-import { ItemCategory } from '@/types';
 import { CameraCard } from '@/components/cards/CameraCard';
 import { PlanCard } from '@/components/cards/PlanCard';
 import { SensorCard } from '@/components/cards/SensorCard';
 import { AccessoryCard } from '@/components/cards/AccessoryCard';
 import { AccordionStep } from './AccordionStep';
 import { camerasList, plansList, sensorsList, accessoriesList } from '@/data/catalogSelectors';
-export const BuilderAccordion = () => {
+// 1. استدعاء الستور
+import { useCartStore } from '@/store/useCartStore'; 
 
+export const BuilderAccordion = () => {
    const [openStep, setOpenStep] = useState(1);
+
+   // 2. نجيب السلة من الستور
+   const cart = useCartStore((state) => state.cart);
+
+   // 3. نحسب العدد لكل قسم بناءً على المنتجات اللي في السلة
+   const camerasCount = cart.filter(cartItem => 
+      camerasList.some(cam => cam.id === cartItem.productId)
+   ).length;
+
+   const plansCount = cart.filter(cartItem => 
+      plansList.some(plan => plan.id === cartItem.productId)
+   ).length;
+
+   const sensorsCount = cart.filter(cartItem => 
+      sensorsList.some(sensor => sensor.id === cartItem.productId)
+   ).length;
+
+   const accessoriesCount = cart.filter(cartItem => 
+      accessoriesList.some(acc => acc.id === cartItem.productId)
+   ).length;
 
    return (
       <div className="w-full bg-[#F8F9FB] p-4 sm:p-8 rounded-xl">
 
-         {/* الخطوة 1: الكاميرات */}
          <AccordionStep
             stepNumber={1}
             totalSteps={4}
@@ -25,7 +42,7 @@ export const BuilderAccordion = () => {
             icon={<Camera size={24} />}
             isOpen={openStep === 1}
             onToggle={() => setOpenStep(openStep === 1 ? 0 : 1)}
-            selectedCount={0} // هنربطها بالـ Zustand لاحقاً
+            selectedCount={camerasCount} // 👈 ربطنا العداد هنا
             nextStepTitle="Choose your plan"
             onNext={() => setOpenStep(2)}
          >
@@ -36,7 +53,7 @@ export const BuilderAccordion = () => {
             </div>
          </AccordionStep>
 
-         {/* الخطوة 2: الباقة */}
+
          <AccordionStep
             stepNumber={2}
             totalSteps={4}
@@ -44,7 +61,7 @@ export const BuilderAccordion = () => {
             icon={<Shield size={24} />}
             isOpen={openStep === 2}
             onToggle={() => setOpenStep(openStep === 2 ? 0 : 2)}
-            selectedCount={0}
+            selectedCount={plansCount} // 👈 ربطنا العداد هنا
             nextStepTitle="Choose your sensors"
             onNext={() => setOpenStep(3)}
          >
@@ -55,7 +72,7 @@ export const BuilderAccordion = () => {
             </div>
          </AccordionStep>
 
-         {/* الخطوة 3: الحساسات */}
+
          <AccordionStep
             stepNumber={3}
             totalSteps={4}
@@ -63,7 +80,7 @@ export const BuilderAccordion = () => {
             icon={<Radio size={24} />}
             isOpen={openStep === 3}
             onToggle={() => setOpenStep(openStep === 3 ? 0 : 3)}
-            selectedCount={0}
+            selectedCount={sensorsCount} // 👈 ربطنا العداد هنا
             nextStepTitle="Add extra protection"
             onNext={() => setOpenStep(4)}
          >
@@ -74,7 +91,7 @@ export const BuilderAccordion = () => {
             </div>
          </AccordionStep>
 
-         {/* الخطوة 4: الإكسسوارات */}
+
          <AccordionStep
             stepNumber={4}
             totalSteps={4}
@@ -82,7 +99,7 @@ export const BuilderAccordion = () => {
             icon={<Layers size={24} />}
             isOpen={openStep === 4}
             onToggle={() => setOpenStep(openStep === 4 ? 0 : 4)}
-            selectedCount={0}
+            selectedCount={accessoriesCount} // 👈 ربطنا العداد هنا
          >
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                {accessoriesList.map(accessory => (
