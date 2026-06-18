@@ -125,6 +125,26 @@ export const catalogData: CatalogItem[] = [
       price: 9.99,
       originalPrice: 12.99,
       billingCycle: 'mo'
+   },
+   {
+      id: 'cam-unlimited-annual',
+      category: ItemCategory.PLAN,
+      name: 'Cam Unlimited (Annual)',
+      description: 'Get 2 months free! Unlimited active cameras with cloud recording, billed annually.',
+      image: 'https://cdn-icons-png.flaticon.com/512/1161/1161388.png',
+      price: 99.00,
+      originalPrice: 155.88,
+      billingCycle: 'yr',
+      badge: 'Save 40%'
+   },
+   {
+      id: 'cam-plus-single',
+      category: ItemCategory.PLAN,
+      name: 'Cam Plus (Single)',
+      description: 'Advanced AI detection and cloud recording for a single camera.',
+      image: 'https://cdn-icons-png.flaticon.com/512/836/836069.png',
+      price: 2.99,
+      billingCycle: 'mo'
    }
 
 ];

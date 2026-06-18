@@ -28,6 +28,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "../ProductCard.tsx"
+    "src/components/ProductCard.tsx",
+    "../ReviewPanel.tsx"
   ]
 }

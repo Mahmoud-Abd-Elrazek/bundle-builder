@@ -32,11 +32,13 @@ export interface SensorItem extends BaseItem {
 }
 
 export interface AccessoryItem extends BaseItem {
+   badge?: string | undefined;
    category: ItemCategory.ACCESSORY;
 }
 
 export interface PlanItem extends BaseItem {
    category: ItemCategory.PLAN;
+   badge?: string | undefined;
    billingCycle: 'mo' | 'yr';
 }
 
