@@ -6,16 +6,15 @@ import { SensorCard } from '@/components/cards/SensorCard';
 import { AccessoryCard } from '@/components/cards/AccessoryCard';
 import { AccordionStep } from './AccordionStep';
 import { camerasList, plansList, sensorsList, accessoriesList } from '@/data/catalogSelectors';
-// 1. استدعاء الستور
+
 import { useCartStore } from '@/store/useCartStore';
 
 export const BuilderAccordion = () => {
    const [openStep, setOpenStep] = useState(1);
 
-   // 2. نجيب السلة من الستور
+   
    const cart = useCartStore((state) => state.cart);
 
-   // 3. نحسب العدد لكل قسم بناءً على المنتجات اللي في السلة
    const camerasCount = cart.filter(cartItem =>
       camerasList.some(cam => cam.id === cartItem.productId)
    ).length;

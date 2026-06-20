@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white text-neutral-text font-sans antialiased">
 
-      <main className="px-4 pt-4">
+      <main className="md:px-4 md:pt-4">
         <div className="flex flex-col xl:flex-row gap-8 items-start">
           <div className="w-full">
             <BuilderAccordion />

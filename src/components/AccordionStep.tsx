@@ -31,7 +31,7 @@ export const AccordionStep = ({
   return (
     <div className={`${stepNumber === 1 ? 'pt-[15px]' : ''} transition-all duration-300 ${isOpen ? 'bg-[#EDF4FF] pb-[15px]' : 'bg-white'} rounded-[10px] ${className}`}>
 
-      <div className="px-[20px]">
+      <div className="px-[8px] md:px-[20px]">
 
         <div
           className="cursor-pointer group flex flex-col gap-[5px] pt-[15px]"
@@ -69,10 +69,7 @@ export const AccordionStep = ({
         >
           <div className="overflow-hidden">
 
-            <div
-              className="">
-              {children}
-            </div>
+            <div> {children} </div>
 
             {nextStepTitle && onNext && (
               <div className="mt-[15px] flex justify-center">
