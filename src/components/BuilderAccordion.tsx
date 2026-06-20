@@ -7,7 +7,7 @@ import { AccessoryCard } from '@/components/cards/AccessoryCard';
 import { AccordionStep } from './AccordionStep';
 import { camerasList, plansList, sensorsList, accessoriesList } from '@/data/catalogSelectors';
 // 1. استدعاء الستور
-import { useCartStore } from '@/store/useCartStore'; 
+import { useCartStore } from '@/store/useCartStore';
 
 export const BuilderAccordion = () => {
    const [openStep, setOpenStep] = useState(1);
@@ -16,24 +16,24 @@ export const BuilderAccordion = () => {
    const cart = useCartStore((state) => state.cart);
 
    // 3. نحسب العدد لكل قسم بناءً على المنتجات اللي في السلة
-   const camerasCount = cart.filter(cartItem => 
+   const camerasCount = cart.filter(cartItem =>
       camerasList.some(cam => cam.id === cartItem.productId)
    ).length;
 
-   const plansCount = cart.filter(cartItem => 
+   const plansCount = cart.filter(cartItem =>
       plansList.some(plan => plan.id === cartItem.productId)
    ).length;
 
-   const sensorsCount = cart.filter(cartItem => 
+   const sensorsCount = cart.filter(cartItem =>
       sensorsList.some(sensor => sensor.id === cartItem.productId)
    ).length;
 
-   const accessoriesCount = cart.filter(cartItem => 
+   const accessoriesCount = cart.filter(cartItem =>
       accessoriesList.some(acc => acc.id === cartItem.productId)
    ).length;
 
    return (
-      <div className="w-full bg-[#F8F9FB] p-4 sm:p-8 rounded-xl">
+      <div className="w-full flex flex-col gap-[13px]">
 
          <AccordionStep
             stepNumber={1}
@@ -42,15 +42,20 @@ export const BuilderAccordion = () => {
             icon={<Camera size={24} />}
             isOpen={openStep === 1}
             onToggle={() => setOpenStep(openStep === 1 ? 0 : 1)}
-            selectedCount={camerasCount} // 👈 ربطنا العداد هنا
+            selectedCount={camerasCount}
             nextStepTitle="Choose your plan"
             onNext={() => setOpenStep(2)}
          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-               {camerasList.map(camera => (
-                  <CameraCard key={camera.id} camera={camera as any} />
-               ))}
-            </div>
+            <div className="flex flex-wrap justify-center gap-[15px] items-stretch">
+   {camerasList.map(camera => (
+      <div 
+         key={camera.id} 
+         className="flex-grow flex-shrink-0 basis-[350px] max-w-[420px] flex"
+      >
+         <CameraCard camera={camera as any} />
+      </div>
+   ))}
+</div>
          </AccordionStep>
 
 
@@ -61,7 +66,7 @@ export const BuilderAccordion = () => {
             icon={<Shield size={24} />}
             isOpen={openStep === 2}
             onToggle={() => setOpenStep(openStep === 2 ? 0 : 2)}
-            selectedCount={plansCount} // 👈 ربطنا العداد هنا
+            selectedCount={plansCount}
             nextStepTitle="Choose your sensors"
             onNext={() => setOpenStep(3)}
          >
@@ -80,7 +85,7 @@ export const BuilderAccordion = () => {
             icon={<Radio size={24} />}
             isOpen={openStep === 3}
             onToggle={() => setOpenStep(openStep === 3 ? 0 : 3)}
-            selectedCount={sensorsCount} // 👈 ربطنا العداد هنا
+            selectedCount={sensorsCount}
             nextStepTitle="Add extra protection"
             onNext={() => setOpenStep(4)}
          >
@@ -99,7 +104,7 @@ export const BuilderAccordion = () => {
             icon={<Layers size={24} />}
             isOpen={openStep === 4}
             onToggle={() => setOpenStep(openStep === 4 ? 0 : 4)}
-            selectedCount={accessoriesCount} // 👈 ربطنا العداد هنا
+            selectedCount={accessoriesCount}
          >
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                {accessoriesList.map(accessory => (

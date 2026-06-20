@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Triangle } from 'lucide-react';
 
 interface AccordionStepProps {
   stepNumber: number;
@@ -11,6 +11,7 @@ interface AccordionStepProps {
   selectedCount: number;
   nextStepTitle?: string;
   onNext?: () => void;
+  className?: string;
   children: React.ReactNode;
 }
 
@@ -24,64 +25,66 @@ export const AccordionStep = ({
   selectedCount,
   nextStepTitle,
   onNext,
+  className,
   children
 }: AccordionStepProps) => {
   return (
-    <div className="border-b border-neutral-border last:border-b-0 pb-6 mb-6">
+    <div className={`${stepNumber === 1 ? 'pt-[15px]' : ''} transition-all duration-300 ${isOpen ? 'bg-[#EDF4FF] pb-[15px]' : 'bg-white'} rounded-[10px] ${className}`}>
 
-      {/* 1. رأس الخطوة (Header) */}
-      <div
-        className="cursor-pointer group flex flex-col gap-2"
-        onClick={onToggle}
-      >
-        <span className="text-[10px] font-bold tracking-widest text-neutral-muted uppercase">
-          Step {stepNumber} of {totalSteps}
-        </span>
+      <div className="px-[20px]">
 
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="text-neutral-muted group-hover:text-[#5E3BC0] transition-colors duration-300">
-              {icon}
+        <div
+          className="cursor-pointer group flex flex-col gap-[5px] pt-[15px]"
+          onClick={onToggle}
+        >
+          <span className="text-[10px] font-medium leading-none text-[#484848] tracking-[1.6px] align-middle uppercase">
+            Step {stepNumber} of {totalSteps}
+          </span>
+
+          <div className={`border-y-[0.5px] border-[#1F1F1F] flex justify-between items-center py-[20px] transition-colors duration-300 ${isOpen ? 'border-b-transparent ' : 'border-b-[#1F1F1F]'}`}>
+            <div className="flex items-center gap-[8px]">
+              <div className="text-neutral-muted w-[26px] h-[26px] group-hover:text-[#5E3BC0] transition-colors duration-300">
+                {icon}
+              </div>
+              <p className="text-[22px] font-semibold text-[#0B0D10] leading-none tracking-[0px]">{title}</p>
             </div>
-            <h2 className="text-xl font-bold text-neutral-text">{title}</h2>
-          </div>
 
-          <div className="flex items-center gap-4">
-            {selectedCount > 0 && (
-              <span className="text-sm font-medium text-[#5E3BC0] animate-pulse">
-                {selectedCount} selected
-              </span>
-            )}
+            <div className="flex items-center gap-[4px]">
+              {selectedCount > 0 && (
+                <span className="text-[14px] font-medium text-[#4E2FD2] leading-[16px] tracking-[0px] text-center">
+                  {selectedCount} selected
+                </span>
+              )}
 
-            {/* إضافة Animation للسهم عشان يلف 180 درجة لما يفتح */}
-            <div className={`text-[#5E3BC0] transition-transform duration-300 ease-in-out ${isOpen ? 'rotate-180' : 'rotate-0'}`}>
-              <ChevronDown size={20} />
+              <div className={`text-[#5E3BC0] transition-transform duration-300 ease-in-out ${isOpen ? 'rotate-180' : 'rotate-0'}`}>
+                <Triangle size={12} fill='#5E3BC0' className="rotate-180" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* 2. محتوى الخطوة (Body) مع الـ Grid Animation */}
-      <div
-        className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'
-          }`}
-      >
-        {/* الحاوية دي مهمة جداً عشان تخفي المحتوى وهو بيقفل */}
-        <div className="overflow-hidden">
-          <div className="flex flex-col gap-4">
-            {children}
-          </div>
+        {/* Grid Animation */}
+        <div
+          className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+        >
+          <div className="overflow-hidden">
 
-          {nextStepTitle && onNext && (
-            <div className="mt-8 flex justify-center border-t border-neutral-border pt-8">
-              <button
-                onClick={onNext}
-                className="px-8 py-3 border border-[#5E3BC0] text-[#5E3BC0] rounded-lg font-bold hover:bg-[#5E3BC0] hover:text-white transition-all duration-300 transform hover:scale-105 active:scale-95"
-              >
-                Next: {nextStepTitle}
-              </button>
+            <div
+              className="">
+              {children}
             </div>
-          )}
+
+            {nextStepTitle && onNext && (
+              <div className="mt-[15px] flex justify-center">
+                <button
+                  onClick={onNext}
+                  className="px-[24px] py-[5px] text-[18px] leading-[24px] tracking-[0%] align-middle text-center border-[1px] border-[#4E2FD2] text-[#4E2FD2] rounded-[7px] font-semibold hover:bg-[#4E2FD2] hover:text-white transition-all duration-300 transform hover:scale-105 active:scale-95"
+                >
+                  Next: {nextStepTitle}
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
