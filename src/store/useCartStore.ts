@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { CartItem } from '@/types';
+import { INITIAL_CART } from '@/data/initialBundle';
 
 interface CartState {
    cart: CartItem[];
@@ -10,7 +11,7 @@ interface CartState {
 export const useCartStore = create<CartState>()(
    persist(
       (set) => ({
-         cart: [],
+         cart: INITIAL_CART,
 
          updateQuantity: (productId, quantity, selectedColor) => {
             set((state) => {
