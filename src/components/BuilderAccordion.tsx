@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Camera, Shield, Radio, Layers } from 'lucide-react';
 import { CameraCard } from '@/components/cards/CameraCard';
 import { PlanCard } from '@/components/cards/PlanCard';
@@ -15,21 +15,10 @@ export const BuilderAccordion = () => {
    
    const cart = useCartStore((state) => state.cart);
 
-   const camerasCount = cart.filter(cartItem =>
-      camerasList.some(cam => cam.id === cartItem.productId)
-   ).length;
-
-   const plansCount = cart.filter(cartItem =>
-      plansList.some(plan => plan.id === cartItem.productId)
-   ).length;
-
-   const sensorsCount = cart.filter(cartItem =>
-      sensorsList.some(sensor => sensor.id === cartItem.productId)
-   ).length;
-
-   const accessoriesCount = cart.filter(cartItem =>
-      accessoriesList.some(acc => acc.id === cartItem.productId)
-   ).length;
+   const camerasCount = useMemo(() => cart.filter(item => camerasList.some(cam => cam.id === item.productId)).length, [cart]);
+   const plansCount = useMemo(() => cart.filter(item => plansList.some(plan => plan.id === item.productId)).length, [cart]);
+   const sensorsCount = useMemo(() => cart.filter(item => sensorsList.some(sensor => sensor.id === item.productId)).length, [cart]);
+   const accessoriesCount = useMemo(() => cart.filter(item => accessoriesList.some(acc => acc.id === item.productId)).length, [cart]);
 
    return (
       <div className="w-full flex flex-col gap-[13px]">
