@@ -127,3 +127,31 @@ src/
 │   └── BuilderAccordion.tsx         # Smart container managing step expansion states
 └── App.tsx                          # Root application layout
 ```
+## Getting Started (Local Development)
+
+To get a local copy up and running, follow these standard steps:
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+### Installation
+
+1. **Clone the repository:**
+```bash
+   git clone https://github.com/Mahmoud-Abd-Elrazek/bundle-builder.git
+   ```
+
+2. **Navigate to the project directory:**
+```bash
+   cd your-repo-name
+   ```
+
+3. **Install dependencies:**
+```bash
+   npm install
+   ```
+
+4. **Start the development server:**
+```bash
+   npm run dev
+   ```
