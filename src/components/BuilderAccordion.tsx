@@ -9,16 +9,19 @@ import { camerasList, plansList, sensorsList, accessoriesList } from '@/data/cat
 
 import { useCartStore } from '@/store/useCartStore';
 
+const generalStepStyleParent = 'flex flex-wrap justify-center gap-[15px] items-stretch';
+const generalStepStyleChild = 'flex-grow flex-shrink-0 basis-[350px] max-w-[420px] flex';
+
 export const BuilderAccordion = () => {
    const [openStep, setOpenStep] = useState(1);
 
-   
    const cart = useCartStore((state) => state.cart);
 
    const camerasCount = useMemo(() => cart.filter(item => camerasList.some(cam => cam.id === item.productId)).length, [cart]);
    const plansCount = useMemo(() => cart.filter(item => plansList.some(plan => plan.id === item.productId)).length, [cart]);
    const sensorsCount = useMemo(() => cart.filter(item => sensorsList.some(sensor => sensor.id === item.productId)).length, [cart]);
    const accessoriesCount = useMemo(() => cart.filter(item => accessoriesList.some(acc => acc.id === item.productId)).length, [cart]);
+
 
    return (
       <div className="w-full flex flex-col gap-[13px]">
@@ -34,16 +37,16 @@ export const BuilderAccordion = () => {
             nextStepTitle="Choose your plan"
             onNext={() => setOpenStep(2)}
          >
-            <div className="flex flex-wrap justify-center gap-[15px] items-stretch">
-   {camerasList.map(camera => (
-      <div 
-         key={camera.id} 
-         className="flex-grow flex-shrink-0 basis-[350px] max-w-[420px] flex"
-      >
-         <CameraCard camera={camera as any} />
-      </div>
-   ))}
-</div>
+            <div className={generalStepStyleParent}>
+               {camerasList.map(camera => (
+                  <div
+                     key={camera.id}
+                     className={generalStepStyleChild}
+                  >
+                     <CameraCard camera={camera as any} />
+                  </div>
+               ))}
+            </div>
          </AccordionStep>
 
 
@@ -58,9 +61,14 @@ export const BuilderAccordion = () => {
             nextStepTitle="Choose your sensors"
             onNext={() => setOpenStep(3)}
          >
-            <div className="flex flex-col gap-4">
+            <div className={generalStepStyleParent}>
                {plansList.map(plan => (
-                  <PlanCard key={plan.id} plan={plan as any} />
+                  <div
+                     key={plan.id}
+                     className={generalStepStyleChild}
+                  >
+                     <PlanCard plan={plan as any} />
+                  </div>
                ))}
             </div>
          </AccordionStep>
@@ -77,9 +85,14 @@ export const BuilderAccordion = () => {
             nextStepTitle="Add extra protection"
             onNext={() => setOpenStep(4)}
          >
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+            <div className={generalStepStyleParent}>
                {sensorsList.map(sensor => (
-                  <SensorCard key={sensor.id} sensor={sensor as any} />
+                  <div
+                     key={sensor.id}
+                     className={generalStepStyleChild}
+                  >
+                     <SensorCard sensor={sensor as any} />
+                  </div>
                ))}
             </div>
          </AccordionStep>
@@ -94,9 +107,14 @@ export const BuilderAccordion = () => {
             onToggle={() => setOpenStep(openStep === 4 ? 0 : 4)}
             selectedCount={accessoriesCount}
          >
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+            <div className={generalStepStyleParent}>
                {accessoriesList.map(accessory => (
-                  <AccessoryCard key={accessory.id} accessory={accessory as any} />
+                  <div
+                     key={accessory.id}
+                     className={generalStepStyleChild}
+                  >
+                     <AccessoryCard accessory={accessory as any} />
+                  </div>
                ))}
             </div>
          </AccordionStep>
